@@ -1,7 +1,10 @@
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
+import { defineConfig } from 'vitest/config';
+import react from '@vitejs/plugin-react';
 export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-})
+  plugins: [react()], // Use the Vite React plugin
+  test: {
+    environment: 'jsdom', // Use jsdom for React testing
+    globals: true, // Enable global variables like `describe`, `test`, etc.
+    setupFiles: './src/test/setup.js', // Optional: Add a setup file
+  },
+});
